@@ -4,30 +4,32 @@ variable "aws_access_key_id" {
 }
 
 variable "aws_secret_access_key" {
-  description = "Your aws secreet access key"
+  description = "Your aws secret access key"
   type        = string
 }
 
 variable "region" {
   description = "AWS region"
-  default     = "ap-southeast-1"
+  default     = "us-east-1"
   type        = string
 }
 
-variable "app_type" {
-  description = "Application configuration"
+# What image you want to build
+# How many container should be spawned
+# port
+variable "aws_app_type" {
+  description = "Application and configuration"
   type = object({
-    image = string
-    count = number
-    port  = number
+    image         = string
+    minimum_count = number
+    port          = number
   })
   default = {
-    image = "nginx:latest"
-    count = 2
-    port  = 80
+    image         = "nginx:latest"
+    minimum_count = 2
+    port          = 80
   }
 }
-
 
 variable "health_check_path" {
   description = "Path for healthcheck"
@@ -35,7 +37,7 @@ variable "health_check_path" {
   default     = "/"
 }
 
-variable "launch_type" {
+variable "aws_launch_type" {
   description = "ECS Launch type. (1vCPU = 1024, memory in MiB)"
   type = object({
     type   = string
@@ -47,4 +49,16 @@ variable "launch_type" {
     cpu    = 1024
     memory = 2048
   }
+}
+
+variable "availability_zones_count" {
+  description = "Many instance that will be created"
+  type        = number
+  default     = 2
+}
+
+variable "vpc_cidr_block" {
+  description = "CIDR block for your vpc"
+  type        = string
+  default     = "172.16.0.0/16" # 16 bit hosts, 2^16 which is maximal
 }
