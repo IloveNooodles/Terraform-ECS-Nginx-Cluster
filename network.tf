@@ -15,7 +15,6 @@ resource "aws_subnet" "private" {
   cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 8, count.index)
 }
 
-
 # Creating 2 /24 public subnet 
 # Adding availability_zones_count to differ the cidr numnetwork
 resource "aws_subnet" "public" {
