@@ -8,7 +8,7 @@ resource "aws_appautoscaling_target" "ecs_target" {
   service_namespace  = "ecs"
 }
 
-# =========== Scalling
+# =========== Scaling
 # Scale up
 resource "aws_appautoscaling_policy" "up_policy" {
   name               = "nginx_scale_up_policy"
