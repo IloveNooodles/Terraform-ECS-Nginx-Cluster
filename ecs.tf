@@ -1,9 +1,9 @@
-# Creating aws ecs cluster
+# =========== Creating aws ecs cluster
 resource "aws_ecs_cluster" "ecs" {
   name = "nginx-cluster"
 }
 
-# Creating task definition
+# =========== Creating task definition
 data "template_file" "nginx" {
   template = file("./templates/task-definition.json")
 
@@ -23,7 +23,7 @@ resource "aws_ecs_task_definition" "td" {
   container_definitions    = data.template_file.nginx.rendered
 }
 
-# Creating service for the cluster
+# =========== Creating service for the cluster
 resource "aws_ecs_service" "service" {
   name            = "nginx-service"
   cluster         = aws_ecs_cluster.ecs.id

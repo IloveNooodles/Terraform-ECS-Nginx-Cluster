@@ -1,13 +1,15 @@
+
+# =========== Get all available zones in current region
 data "aws_availability_zones" "az" {
   state = "available"
 }
 
-# Creating vpc
+# =========== Creating vpc
 resource "aws_vpc" "main" {
   cidr_block = var.vpc_cidr_block
 }
 
-# Creating 2 /24 private subnet 
+# =========== Creating 2 /24 private subnet 
 resource "aws_subnet" "private" {
   vpc_id            = aws_vpc.main.id
   count             = var.availability_zones_count
@@ -15,7 +17,7 @@ resource "aws_subnet" "private" {
   cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 8, count.index)
 }
 
-# Creating 2 /24 public subnet 
+# =========== Creating 2 /24 public subnet 
 # Adding availability_zones_count to differ the cidr numnetwork
 resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.main.id
@@ -31,7 +33,7 @@ resource "aws_internet_gateway" "gateway" {
 }
 
 
-# == Create gateway for nat
+# =========== Create gateway for nat
 
 # Elastic IP
 resource "aws_eip" "nat" {
@@ -48,7 +50,7 @@ resource "aws_nat_gateway" "gateway" {
   allocation_id = element(aws_eip.nat.*.id, count.index)
 }
 
-# == Routing table
+# ============ Routing table
 
 # Public
 resource "aws_route" "internet" {
@@ -68,7 +70,7 @@ resource "aws_route_table" "private" {
   }
 }
 
-# Attaching routing table to the private subnet
+# =========== Attaching routing table to the private subnet
 resource "aws_route_table_association" "private" {
   count          = var.availability_zones_count
   subnet_id      = element(aws_subnet.private.*.id, count.index)

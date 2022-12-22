@@ -1,11 +1,11 @@
-# Create load balancer
+# =========== Creating a load balancer
 resource "aws_alb" "lb" {
   name            = "nginx-load-balancer"
   subnets         = aws_subnet.public.*.id
   security_groups = [aws_security_group.lb.id]
 }
 
-# Create target group
+# =========== Createing a target group
 resource "aws_alb_target_group" "target" {
   vpc_id      = aws_vpc.main.id
   name        = "nginx-target-group"
@@ -19,7 +19,7 @@ resource "aws_alb_target_group" "target" {
   }
 }
 
-# Redirect traffic to target from lb
+# =========== Redirect incoming traffic to target from lb
 resource "aws_alb_listener" "listen" {
   load_balancer_arn = aws_alb.lb.arn
   port = var.app_type.port

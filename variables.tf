@@ -56,3 +56,37 @@ variable "vpc_cidr_block" {
   type        = string
   default     = "172.16.0.0/16" # 16 bit hosts, 2^16 which is maximal
 }
+
+variable "autoscale_config" {
+  description = "Configuration for app autoscaling target"
+  type = object({
+    min = number
+    max = number
+  })
+  default = {
+    min = 1
+    max = 4
+  }
+}
+
+variable "autoscale_metric" {
+  description = "Configuration for cloud metric alarm"
+  type = object({
+    period             = string
+    cooldown           = number
+    evaluation_periods = string
+    max_threshold      = string
+    min_threshold      = string
+    up                 = number
+    down               = number
+  })
+  default = {
+    period             = "120"
+    cooldown           = 120
+    evaluation_periods = "3"
+    max_threshold      = "80"
+    min_threshold      = "10"
+    up                 = 1
+    down               = -1
+  }
+}
