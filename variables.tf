@@ -31,12 +31,6 @@ variable "app_type" {
   }
 }
 
-variable "health_check_path" {
-  description = "Path for healthcheck"
-  type        = string
-  default     = "/"
-}
-
 variable "aws_launch_type" {
   description = "ECS Launch type. (1vCPU = 1024, memory in MiB)"
   type = object({

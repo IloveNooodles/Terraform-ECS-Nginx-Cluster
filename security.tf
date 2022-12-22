@@ -23,6 +23,7 @@ resource "aws_security_group" "lb" {
   }
 }
 
+# Creating security group for ecs
 resource "aws_security_group" "ecs" {
   name = "nginx-ecs-tasks-security-group"
   description = "Limiting access of ecs to get from alb only"
