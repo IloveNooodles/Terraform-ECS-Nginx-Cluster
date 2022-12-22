@@ -20,14 +20,14 @@ variable "region" {
 variable "app_type" {
   description = "Application and configuration"
   type = object({
-    image         = string
-    minimum_count = number
-    port          = number
+    image = string
+    count = number
+    port  = number
   })
   default = {
-    image         = "nginx:latest"
-    minimum_count = 2
-    port          = 80
+    image = "nginx:latest"
+    count = 2
+    port  = 80
   }
 }
 
@@ -39,7 +39,7 @@ variable "aws_launch_type" {
     memory = number
   })
   default = {
-    type   = "Fargate"
+    type   = "FARGATE"
     cpu    = 1024
     memory = 2048
   }

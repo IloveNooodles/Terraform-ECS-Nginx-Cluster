@@ -1,0 +1,15 @@
+[
+  {
+    "name": "nginx",
+    "image": "${app_image}",
+    "cpu": ${app_cpu},
+    "memory": ${app_memory},
+    "networkMode": "awsvpc",
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ]
+  }
+]
