@@ -17,7 +17,7 @@ variable "region" {
 # What image you want to build
 # How many container should be spawned
 # port
-variable "aws_app_type" {
+variable "app_type" {
   description = "Application and configuration"
   type = object({
     image         = string
