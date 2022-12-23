@@ -40,8 +40,8 @@ variable "aws_launch_type" {
   })
   default = {
     type   = "FARGATE"
-    cpu    = 1024
-    memory = 2048
+    cpu    = 256
+    memory = 512
   }
 }
 

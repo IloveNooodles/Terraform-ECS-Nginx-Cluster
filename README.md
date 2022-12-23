@@ -34,7 +34,7 @@ It can manage your infrastructure such as
 10. If `apply` is successful then console will output the url you can visit!
 
 ```
-..SNIP
+...SNIP...
 Apply complete! Resources: 28 added, 0 changed, 0 destroyed.
 
 Outputs:
@@ -42,7 +42,9 @@ Outputs:
 alb_hostname = "nginx-load-balancer-559564577.us-east-1.elb.amazonaws.com"
 ```
 
-Note: all variables defined in the `variables.tf` and it can be changed if you're not satisfied with the configuration
+11. Run `terraform destroy` to destory all the instance.
+
+Note: all variables defined in the `variables.tf` and it can be changed or provide it with the same name in .tfvars if you're not satisfied with the configuration
 
 ## References
 

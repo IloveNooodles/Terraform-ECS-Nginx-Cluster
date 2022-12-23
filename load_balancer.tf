@@ -14,7 +14,7 @@ resource "aws_alb_target_group" "target" {
   target_type = "ip"
 
   health_check {
-    path = "/"
+    path    = "/"
     matcher = "200"
   }
 }
@@ -22,10 +22,10 @@ resource "aws_alb_target_group" "target" {
 # =========== Redirect incoming traffic to target from lb
 resource "aws_alb_listener" "listen" {
   load_balancer_arn = aws_alb.lb.arn
-  port = var.app_type.port
-  
+  port              = var.app_type.port
+
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_alb_target_group.target.arn
   }
 }
