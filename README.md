@@ -1,4 +1,4 @@
-# Terraform - Auto Scaling NGINX with ECS Cluster
+# Terraform - Auto Scaling ECS NGINX Cluster
 
 ## Description
 
